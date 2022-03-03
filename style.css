@@ -1,0 +1,88 @@
+/* On fait un "clear css" pour enlever les proprietes par default du navigateur. */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: black;
+}
+
+body {
+  background: #f5f0e1;
+}
+
+section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 80%;
+  min-height: 80vh;
+  margin: 0 auto;
+  padding: 2rem 0;
+  gap: 1rem;
+  font-size: 1rem;
+}
+
+/* on crée notre separateur avec un element ::before */
+
+/* on applique un align-self(stretch) pour etirer l'élement ::before */
+
+section::before {
+  content: "";
+  border: 1px solid black;
+  align-self: stretch;
+}
+
+article {
+  flex: 1;
+}
+
+/* on réorganise les élements a l'aide de la proprieté order. Dans ce cas l'article de gauche se place avant notre separateur. */
+
+.article1 {
+  order: -1;
+}
+
+/* voila nous avons une separation dynamique entre les deux elements. On peut modifier l'apparence (largeur, le style, la couleur etc...) du separateur avec la proprieté border*/
+
+/*pour le footer, on le configure en display:flex et on attribue la valeur column a la propriété flex-direction afin que notre element ::before soit horizontal */
+
+footer {
+  display: flex;
+  position: relative;
+  bottom: 0;
+  flex-direction: column;
+  height: 20vh;
+  background: #ff6d40d3;
+}
+
+/* pour la separation du footer on a deux possibilitées: soit on le fait avec une bordure (ce qui facilitera la personnalisation mais on ne pourra pas lui donner une taille tres fine) soit on lui donne une largeur et une hauteur */
+
+footer::before {
+  content: "";
+  height: 1px;
+  width: 100%;
+  background: #000;
+}
+
+footer ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style-type: none;
+  height: auto;
+  width: 100vw;
+  height: 100%;
+}
+
+/* quand la largeur de l'ecran sera inferieure a 700px la separation des articles sera horizontale*/
+
+@media (max-width: 700px) {
+  section {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
